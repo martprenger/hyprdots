@@ -1,0 +1,8 @@
+    "custom/quick_settings": {
+        "format": "{}",
+        "exec": "echo ; echo  logout",
+        "on-click": "ags -t quicksettings",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+

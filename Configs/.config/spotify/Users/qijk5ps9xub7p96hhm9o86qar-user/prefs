@@ -1,0 +1,10 @@
+audio.play_bitrate_non_metered_migrated=true
+connect.dial_devices="[]"
+audio.sync_bitrate_enumeration=4
+audio.allow_downgrade=false
+audio.equalizer_v2=true
+audio.play_bitrate_enumeration=4
+ui.hide_hpto=true
+ui.track_notifications_enabled=false
+audio.play_bitrate_non_metered_enumeration=4
+app.player.volume=47185
