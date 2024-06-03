@@ -51,7 +51,7 @@ Thank you for your interest in contributing to Community Standards! We welcome a
 - Update the **documentation** if necessary.
 - Add tests if applicable.
 - Make sure all tests pass before submitting your changes.
-- Keep your pull request focused and avoid including unrelated changes.
+-Keep your pull request focused and avoid including unrelated changes.
 - Remeber to follow the given files before submitting your changes.
   - [bug_report.md](https://github.com/prasanthrangan/hyprdots/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) - Use this template to create a report to help us improve.
   - [feature_request.md](https://github.com/prasanthrangan/hyprdots/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) - Use this template to suggest a feature for this project.

@@ -48,6 +48,11 @@ ffmpegthumbs                                           # for dolphin video thumb
 kde-cli-tools                                          # for dolphin file type defaults
 libnotify                                              # for notifications
 bun                                                    # for ags
+ttf-hack-nerd                                          # hack nerd font
+polkit                                                 # authenticator
+python-lsp-server                                      # python lsp server for neovim
+vim-language-server                                    # vim lsp server for neovim
+python-pynvim                                          # python neovim
 dart-sass
 fd
 matugen

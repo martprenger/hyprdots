@@ -18,6 +18,10 @@ mangohud                                               # system performance over
 cava                                                   # audio visualizer
 spotify                                                # proprietary music streaming service
 spicetify-cli                                          # cli to customize spotify client
+spotify-tui                                            # cli spotify
+
+# --------------------------------------------------- // Comunication
+discord
 
 # --------------------------------------------------- // Apps
-# neovim                                               # vim based text editor
+neovim                                                 # vim based text editor
