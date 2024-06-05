@@ -15,7 +15,6 @@ bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 udiskie                                                # manage removable media
-deej                                                   # for physical volume mixer
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
@@ -47,7 +46,7 @@ qt5-imageformats                                       # for dolphin image thumb
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
 libnotify                                              # for notifications
-bun                                                    # for ags
+bun-bin                                                # for ags
 ttf-hack-nerd                                          # hack nerd font
 polkit                                                 # authenticator
 python-lsp-server                                      # python lsp server for neovim
@@ -77,7 +76,7 @@ code                                                   # ide text editor
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
 oh-my-zsh-git|zsh                                      # plugin manager for zsh
-zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git          # theme for zsh
+zsh-theme-powerlevel10k|zsh oh-my-zsh                  # theme for zsh
 lsd|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 fastfetch                                              # system information fetch tool
