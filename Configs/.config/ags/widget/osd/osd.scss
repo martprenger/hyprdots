@@ -23,4 +23,12 @@ window.indicator {
         font-size: 58px;
         color: transparentize($fg, .1)
     }
+
+    .volume {
+        @include floating-widget;
+        margin: $spacing * 2;
+        padding: $popover-padding * 2;
+        font-size: 58px;
+        color: transparentize($fg, .1)
+    }
 }
