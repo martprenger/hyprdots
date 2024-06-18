@@ -27,7 +27,7 @@ const widget = {
     systray: SysTray,
     system: SystemIndicators,
     taskbar: Taskbar,
-    workspaces: Workspaces,
+    workspaces: (monitor) => Workspaces(monitor), // Modify here to pass monitor
     screenrecord: ScreenRecord,
     messages: Messages,
     expander: () => Widget.Box({ expand: true }),
@@ -43,15 +43,15 @@ export default (monitor: number) => Widget.Window({
         css: "min-width: 2px; min-height: 2px;",
         startWidget: Widget.Box({
             hexpand: true,
-            children: start.bind().as(s => s.map(w => widget[w]())),
+            children: start.bind().as(s => s.map(w => widget[w](monitor))), // Pass the monitor here
         }),
         centerWidget: Widget.Box({
             hpack: "center",
-            children: center.bind().as(c => c.map(w => widget[w]())),
+            children: center.bind().as(c => c.map(w => widget[w](monitor))), // Pass the monitor here
         }),
         endWidget: Widget.Box({
             hexpand: true,
-            children: end.bind().as(e => e.map(w => widget[w]())),
+            children: end.bind().as(e => e.map(w => widget[w](monitor))), // Pass the monitor here
         }),
     }),
 })

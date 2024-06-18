@@ -70,18 +70,14 @@ const options = mkOptions(OPTIONS, {
             start: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "launcher",
                 "workspaces",
-                "taskbar",
+                // "taskbar",
                 "expander",
-                "messages",
             ]),
             center: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "date",
             ]),
             end: opt<Array<import("widget/bar/Bar").BarWidget>>([
-                "media",
                 "expander",
-                "systray",
-                "colorpicker",
                 "screenrecord",
                 "system",
                 "battery",
@@ -95,12 +91,12 @@ const options = mkOptions(OPTIONS, {
             },
             label: {
                 colored: opt(false),
-                label: opt(" Applications"),
+                label: opt(""),
             },
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%H:%M - %A %e."),
+            format: opt("%H:%M - %A %e/%m"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -112,11 +108,11 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(7),
+            workspaces: opt(),
         },
         taskbar: {
-            iconSize: opt(0),
-            monochrome: opt(true),
+            iconSize: opt(14),
+            monochrome: opt(false),
             exclusive: opt(false),
         },
         messages: {
@@ -129,7 +125,7 @@ const options = mkOptions(OPTIONS, {
             ]),
         },
         media: {
-            monochrome: opt(true),
+            monochrome: opt(false),
             preferred: opt("spotify"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
@@ -153,15 +149,13 @@ const options = mkOptions(OPTIONS, {
         },
         apps: {
             iconSize: opt(62),
-            max: opt(6),
+            max: opt(12),
             favorites: opt([
                 [
                     "firefox",
-                    "org.gnome.Nautilus",
-                    "org.gnome.Calendar",
-                    "obsidian",
                     "discord",
                     "spotify",
+                    "stremio",
                 ],
             ]),
         },
@@ -169,8 +163,8 @@ const options = mkOptions(OPTIONS, {
 
     overview: {
         scale: opt(9),
-        workspaces: opt(7),
-        monochromeIcon: opt(true),
+        workspaces: opt(9),
+        monochromeIcon: opt(false),
     },
 
     powermenu: {

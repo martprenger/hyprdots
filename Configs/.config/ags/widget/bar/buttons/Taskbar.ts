@@ -9,16 +9,17 @@ const { monochrome, exclusive, iconSize } = options.bar.taskbar
 const { position } = options.bar
 
 const focus = (address: string) => hyprland.messageAsync(
-    `dispatch focuswindow address:${address}`)
+    `dispatch focuswindow address:${address}`
+)
 
 const DummyItem = (address: string) => Widget.Box({
     attribute: { address },
     visible: false,
 })
 
-const AppItem = (address: string) => {
+const AppItem = (address: string, monitor: number) => {
     const client = hyprland.getClient(address)
-    if (!client || client.class === "")
+    if (!client || client.class === "" || client.monitor !== monitor)
         return DummyItem(address)
 
     const app = apps.list.find(app => app.match(client.class))
@@ -45,7 +46,7 @@ const AppItem = (address: string) => {
             visible: Utils.watch(true, [exclusive, hyprland], () => {
                 return exclusive.value
                     ? hyprland.active.workspace.id === client.workspace.id
-                    : true
+                    : client.monitor === monitor
             }),
         },
         Widget.Overlay({
@@ -71,9 +72,11 @@ function sortItems<T extends { attribute: { address: string } }>(arr: T[]) {
     })
 }
 
-export default () => Widget.Box({
+export default (monitor: number) => Widget.Box({
     class_name: "taskbar",
-    children: sortItems(hyprland.clients.map(c => AppItem(c.address))),
+    children: sortItems(hyprland.clients
+        .map(c => AppItem(c.address, monitor))
+    ),
     setup: w => w
         .hook(hyprland, (w, address?: string) => {
             if (typeof address === "string")
@@ -81,10 +84,12 @@ export default () => Widget.Box({
         }, "client-removed")
         .hook(hyprland, (w, address?: string) => {
             if (typeof address === "string")
-                w.children = sortItems([...w.children, AppItem(address)])
+                w.children = sortItems([...w.children, AppItem(address, monitor)])
         }, "client-added")
         .hook(hyprland, (w, event?: string) => {
-            if (event === "movewindow")
-                w.children = sortItems(w.children)
+            if (event === "movewindow" || event === "workspacechange")
+                w.children = sortItems(w.children.map(child => 
+                    AppItem(child.attribute.address, monitor)
+                ))
         }, "event"),
 })

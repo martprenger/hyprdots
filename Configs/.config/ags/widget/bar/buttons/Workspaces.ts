@@ -9,30 +9,31 @@ const dispatch = (arg: string | number) => {
     sh(`hyprctl dispatch workspace ${arg}`)
 }
 
-const Workspaces = (ws: number) => Widget.Box({
-    children: range(ws || 20).map(i => Widget.Label({
-        attribute: i,
-        vpack: "center",
-        label: `${i}`,
-        setup: self => self.hook(hyprland, () => {
-            self.toggleClassName("active", hyprland.active.workspace.id === i)
-            self.toggleClassName("occupied", (hyprland.getWorkspace(i)?.windows || 0) > 0)
-        }),
-    })),
-    setup: box => {
-        if (ws === 0) {
-            box.hook(hyprland.active.workspace, () => box.children.map(btn => {
-                btn.visible = hyprland.workspaces.some(ws => ws.id === btn.attribute)
+const Workspaces = (monitor: number) => {
+    const activeId = hyprland.active.workspace.bind("id")
+    const workspaces = hyprland.bind("workspaces")
+        .as(ws => ws
+            .filter(w => w.monitorID == monitor) // Filter workspaces by monitor ID
+            .map(({ id, monitor }) => Widget.Label({
+                attribute: id,
+                vpack: "center",
+                label: `${id%10}`,
+                class_name: activeId.as(i => `${i === id ? "active" : ""}`),
             }))
-        }
-    },
-})
+            .sort((a, b) => a.attribute - b.attribute)
+        )
 
-export default () => PanelButton({
+    return Widget.Box({
+        class_name: "workspaces",
+        children: workspaces,
+    })
+}
+
+export default (monitor: number) => PanelButton({
     window: "overview",
     class_name: "workspaces",
     on_scroll_up: () => dispatch("m+1"),
     on_scroll_down: () => dispatch("m-1"),
     on_clicked: () => App.toggleWindow("overview"),
-    child: workspaces.bind().as(Workspaces),
+    child: workspaces.bind().as(() => Workspaces(monitor)), // Pass the monitor variable
 })
