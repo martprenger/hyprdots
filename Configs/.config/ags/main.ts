@@ -2,7 +2,7 @@ import "lib/session"
 import "style/style"
 import init from "lib/init"
 import options from "options"
-// import Bar from "widget/bar/Bar"
+import Bar from "widget/bar/Bar"
 import Launcher from "widget/launcher/Launcher"
 import NotificationPopups from "widget/notifications/NotificationPopups"
 import OSD from "widget/osd/OSD"
@@ -27,6 +27,7 @@ App.config({
         "datemenu": options.transition.value,
     },
     windows: () => [
+        ...forMonitors(Bar),
         ...forMonitors(NotificationPopups),
         ...forMonitors(OSD),
         Launcher(),

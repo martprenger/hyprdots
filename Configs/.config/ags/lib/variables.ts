@@ -19,6 +19,11 @@ export const distro = {
     logo: GLib.get_os_info("LOGO"),
 }
 
+export const user = {
+    // GLib.get_user_name() returns the username of the current user
+    name: GLib.get_user_name(),
+}
+
 // const divide = ([total, free]: string[]) => Number.parseInt(free) / Number.parseInt(total)
 //
 // export const cpu = Variable(0, {

@@ -1,5 +1,5 @@
 import icons from "lib/icons"
-import { uptime } from "lib/variables"
+import { uptime, user } from "lib/variables"
 import options from "options"
 import powermenu, { Action } from "service/powermenu"
 
@@ -35,13 +35,9 @@ export const Header = () => Widget.Box(
         vertical: true,
         vpack: "center",
         children: [
-            Widget.Box({
-                visible: battery.bind("available"),
-                children: [
-                    Widget.Icon({ icon: battery.bind("icon_name") }),
-                    Widget.Label({ label: battery.bind("percent").as(p => `${p}%`) }),
-                ],
-            }),
+            Widget.Box([
+                Widget.Label({ label: user.name }),
+            ]),
             Widget.Box([
                 Widget.Icon({ icon: icons.ui.time }),
                 Widget.Label({ label: uptime.bind().as(up) }),

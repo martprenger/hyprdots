@@ -47,7 +47,6 @@ const Settings = () => Widget.Box({
                     [SinkSelector, AppMixer],
                 ),
                 Microhone(),
-                Brightness(),
             ],
         }),
         Row([MicMute, DND]),
