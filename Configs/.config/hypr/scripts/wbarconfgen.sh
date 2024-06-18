@@ -21,12 +21,12 @@ then
     for (( i=0 ; i<$num_files ; i++ ))
     do
         flag=`echo "${read_ctl[i]}" | cut -d '|' -f 1`
-        if [ $flag -eq 1 ] && [ "$1" == "n" ] ; then
+        if [ $flag 1 ] && [ "$1" == "n" ] ; then
             nextIndex=$(( (i + 1) % $num_files ))
             switch=1
             break;
 
-        elif [ $flag -eq 1 ] && [ "$1" == "p" ] ; then
+        elif [ $flag 1 ] && [ "$1" == "p" ] ; then
             nextIndex=$(( i - 1 ))
             switch=1
             break;
