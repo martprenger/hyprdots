@@ -75,6 +75,7 @@ function Launcher() {
             text ||= ""
             favs.reveal_child = text === ""
             help.reveal_child = text.split(" ").length === 1 && text?.startsWith(":")
+            scrollableApps.reveal_child = text !== ""
 
             if (text?.startsWith(":nx"))
                 nix.filter(text.substring(3))
@@ -97,7 +98,23 @@ function Launcher() {
         entry.select_region(0, -1)
         entry.grab_focus()
         favs.reveal_child = true
+        scrollableApps.reveal_child = false
     }
+
+    const scrollableApps = Widget.Revealer({
+        class_name: "app-list",
+        child: Widget.Scrollable({
+            vexpand: true,
+            hscroll: "never",
+            css: `min-height: 600px;`,
+            class_name: "app-scrollable",
+            child: Widget.Box({
+                class_name: "app-list vertical",
+                vertical: true,
+                child: applauncher
+            }),
+        }),
+    })
 
     const layout = Widget.Box({
         css: width.bind().as(v => `min-width: ${v}pt;`),
@@ -116,7 +133,7 @@ function Launcher() {
             Widget.Box([entry, nixload, shicon]),
             favs,
             help,
-            applauncher,
+            scrollableApps,
             nix,
             sh,
         ],

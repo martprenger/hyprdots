@@ -2,6 +2,7 @@
 import { type Opt } from "lib/option"
 import options from "options"
 import { bash, dependencies, sh } from "lib/utils"
+import GLib from "gi://GLib?version=2.0"
 
 const deps = [
     "font",
@@ -13,8 +14,6 @@ const deps = [
 ]
 
 const {
-    dark,
-    light,
     blur,
     scheme,
     padding,
@@ -28,21 +27,9 @@ const {
 const popoverPaddingMultiplier = 1.6
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const t = (dark: Opt<any> | string, light: Opt<any> | string) => scheme.value === "dark"
-    ? `${dark}` : `${light}`
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const $ = (name: string, value: string | Opt<any>) => `$${name}: ${value};`
 
 const variables = () => [
-    $("bg", blur.value ? `transparentize(${t(dark.bg, light.bg)}, ${blur.value / 100})` : t(dark.bg, light.bg)),
-    $("fg", t(dark.fg, light.fg)),
-
-    $("primary-bg", t(dark.primary.bg, light.primary.bg)),
-    $("primary-fg", t(dark.primary.fg, light.primary.fg)),
-
-    $("error-bg", t(dark.error.bg, light.error.bg)),
-    $("error-fg", t(dark.error.fg, light.error.fg)),
 
     $("scheme", scheme),
     $("padding", `${padding}pt`),
@@ -52,20 +39,8 @@ const variables = () => [
 
     $("shadows", `${shadows}`),
 
-    $("widget-bg", `transparentize(${t(dark.widget, light.widget)}, ${widget.opacity.value / 100})`),
-
-    $("hover-bg", `transparentize(${t(dark.widget, light.widget)}, ${(widget.opacity.value * .9) / 100})`),
-    $("hover-fg", `lighten(${t(dark.fg, light.fg)}, 8%)`),
-
     $("border-width", `${border.width}px`),
-    $("border-color", `transparentize(${t(dark.border, light.border)}, ${border.opacity.value / 100})`),
-    $("border", "$border-width solid $border-color"),
 
-    $("active-gradient", `linear-gradient(to right, ${t(dark.primary.bg, light.primary.bg)}, darken(${t(dark.primary.bg, light.primary.bg)}, 4%))`),
-    $("shadow-color", t("rgba(0,0,0,.6)", "rgba(0,0,0,.4)")),
-    $("text-shadow", t("2pt 2pt 2pt $shadow-color", "none")),
-
-    $("popover-border-color", `transparentize(${t(dark.border, light.border)}, ${Math.max(((border.opacity.value - 1) / 100), 0)})`),
     $("popover-padding", `$padding * ${popoverPaddingMultiplier}`),
     $("popover-radius", radius.value === 0 ? "0" : "$radius + $popover-padding"),
 
@@ -87,9 +62,17 @@ async function resetCss() {
         const vars = `${TMP}/variables.scss`
         await Utils.writeFile(variables().join("\n"), vars)
 
+
+        const cache_dir = GLib.get_user_cache_dir()
+        const additionalColors = `${cache_dir}/material/colors.scss`
         const fd = await sh(`fd ".scss" ${App.configDir}`)
         const files = fd.split(/\s+/).map(f => `@import '${f}';`)
-        const scss = [`@import '${vars}';`, ...files].join("\n")
+        const scss = [
+            `@import '${vars}';`,
+            `@import '${additionalColors}';`, // Import the additional colors file
+            ...files
+        ].join("\n")
+        
         const css = await bash`echo "${scss}" | sass --stdin`
 
         App.applyCss(css, true)

@@ -18,7 +18,7 @@ window#verification .verification {
         }
 
         .desc {
-            color: transparentize($fg, 0.1);
+            color: transparentize($foreground, 0.1);
             font-size: 1.1em;
         }
     }
@@ -75,7 +75,7 @@ window#powermenu .powermenu {
 
         label,
         image {
-            color: transparentize($fg, 0.1);
+            color: transparentize($foreground, 0.1);
         }
 
         label {
@@ -88,7 +88,7 @@ window#powermenu .powermenu {
             }
 
             label {
-                color: $fg;
+                color: $foreground;
             }
         }
 
@@ -103,7 +103,7 @@ window#powermenu .powermenu {
         &:focus,
         &:active {
             label {
-                color: $primary-bg;
+                color: $primary;
             }
         }
     }

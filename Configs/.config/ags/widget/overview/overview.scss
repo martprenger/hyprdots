@@ -4,7 +4,7 @@ window#overview .overview {
 
     .workspace {
         &.active>widget {
-            border-color: $primary-bg
+            border-color: $primary
         }
 
         >widget {
@@ -12,11 +12,11 @@ window#overview .overview {
             border-radius: if($radius ==0, 0, $radius + $padding);
 
             &:hover {
-                background-color: $hover-bg;
+                background-color: $surfaceBright;
             }
 
             &:drop(active) {
-                border-color: $primary-bg;
+                border-color: $primary;
             }
         }
     }

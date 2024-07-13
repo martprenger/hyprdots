@@ -23,13 +23,8 @@ window.popup {
 
     menu {
         border-radius: $popover-radius;
-        background-color: $bg;
+        background-color: $background;
         padding: $popover-padding;
-        border: $border-width solid $popover-border-color;
-
-        separator {
-            background-color: $border-color;
-        }
 
         menuitem {
             @include button;
@@ -52,16 +47,15 @@ tooltip {
         all: unset;
     }
 
-    background-color: transparent;
+    background-color: $onBackground;
     border: none;
 
     >*>* {
-        background-color: $bg;
+        background-color: $background;
         border-radius: $radius;
-        border: $border-width solid $popover-border-color;
-        color: $fg;
+        color: $foreground;
         padding: 8px;
         margin: 4px;
-        box-shadow: 0 0 3px 0 $shadow-color;
+        box-shadow: 0 0 3px 0 $shadow;
     }
 }

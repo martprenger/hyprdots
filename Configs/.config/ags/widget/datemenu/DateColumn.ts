@@ -1,10 +1,4 @@
-import { clock, uptime } from "lib/variables"
-
-function up(up: number) {
-    const h = Math.floor(up / 60)
-    const m = Math.floor(up % 60)
-    return `uptime: ${h}:${m < 10 ? "0" + m : m}`
-}
+import { clock } from "lib/variables"
 
 export default () => Widget.Box({
     vertical: true,
@@ -18,10 +12,6 @@ export default () => Widget.Box({
                     class_name: "clock",
                     label: clock.bind().as(t => t.format("%H:%M")!),
                 }),
-                Widget.Label({
-                    class_name: "uptime",
-                    label: uptime.bind().as(up),
-                }),
             ],
         }),
         Widget.Box({
@@ -30,6 +20,7 @@ export default () => Widget.Box({
                 Widget.Calendar({
                     hexpand: true,
                     hpack: "center",
+                    showWeekNumbers: true,
                 }),
             ],
         }),

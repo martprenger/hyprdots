@@ -9,24 +9,18 @@ $button-radius: $radius;
     >* {
         border-radius: $button-radius;
         margin: $bar-spacing;
-        background-color: $bg;
+        padding: $padding * 0.4 $padding * 0.8;
+        background: $surfaceContainer;
+        margin-bottom: 0;
     }
 
     label,
     image {
         font-weight: bold;
     }
-
-    >* {
-        padding: $padding * 0.4 $padding * 0.8;
-    }
 }
 
-
-
 .bar {
-    // background-color: $bg;
-    font-size: 12px;
 
     .panel-button {
         @include panel-button;
@@ -43,70 +37,26 @@ $button-radius: $radius;
         border-radius: 5px;
     }
 
-    .launcher {
-        .colored {
-            color: transparentize($primary-bg, 0.2);
-        }
-
-        &:hover .colored {
-            color: $primary-bg;
-        }
-
-        &:active .colored,
-        &.active .colored {
-            color: $primary-fg;
-        }
-    }
-
     .workspaces {
 
         button {
             min-width: 0;
             padding-top: 0;
             padding-bottom: 0;
-            background-color: transparent;
         }
-        
-        button:active {
-            background-color: $primary-bg;
-        }
-        
+
         label {
             font-size: 12;
             min-width: 12pt;
             min-height: 8pt;
             border-radius: $radius*.6;
-            box-shadow: inset 0 0 0 $border-width $border-color;
             margin: 0 $padding * .5;
             transition: $transition* .5;
-            background-color: transparentize($fg, .9);
 
             &.active {
-                // background-color: $primary-bg;
-                background-image: $active-gradient;
+                background-color: $secondaryContainer;
                 min-width: 20pt;
-                min-height: 12pt;
-            }
-        }
-        
-        .workspaces button.focused {
-            border-bottom: 3px solid $primary-bg;
-        }
-
-        
-
-        &.active,
-        &:active {
-            label {
-                background-color: transparentize($primary-fg, .3);
-
-                &.occupied {
-                    background-color: transparentize($primary-fg, .15);
-                }
-
-                &.active {
-                    background-color: $primary-fg;
-                }
+                min-height: 8pt;
             }
         }
     }
@@ -116,7 +66,7 @@ $button-radius: $radius;
     }
 
     .taskbar .indicator.active {
-        background-color: $primary-bg;
+        background-color: $primary;
         border-radius: $radius;
         min-height: 4pt;
         min-width: 6pt;
@@ -128,16 +78,16 @@ $button-radius: $radius;
         font-size: 12px;
         
         image {
-            color: transparentize($error-bg, 0.3);
+            color: transparentize($error, 0.3);
             
         }
 
         &:hover image {
-            color: transparentize($error-bg, 0.15);
+            color: transparentize($error, 0.15);
         }
 
         &:active image {
-            color: $primary-fg;
+            color: $onPrimary;
         }
     }
 
@@ -147,12 +97,12 @@ $button-radius: $radius;
 
     .quicksettings:not(.active):not(:active) {
         .bluetooth {
-            color: $primary-bg;
+            color: $primary;
 
             label {
                 font-size: $font-size * .7;
-                color: $fg;
-                text-shadow: $text-shadow;
+                color: $foreground;
+                text-shadow: $shadow;
             }
         }
     }
@@ -178,11 +128,11 @@ $button-radius: $radius;
         .whole {
             @if $shadows {
                 image {
-                    -gtk-icon-shadow: $text-shadow;
+                    -gtk-icon-shadow: $shadow;
                 }
 
                 label {
-                    text-shadow: $text-shadow;
+                    text-shadow: $shadow;
                 }
             }
         }
@@ -228,24 +178,24 @@ $button-radius: $radius;
 
         @for $i from 1 through $bar-battery-blocks {
             block:nth-child(#{$i}).filled {
-                background-color: color.mix($bg, $primary-bg, $i*3)
+                background-color: color.mix($background, $background, $i*3)
             }
 
             &.low block:nth-child(#{$i}).filled {
-                background-color: color.mix($bg, $error-bg, $i*3)
+                background-color: color.mix($background, $errorContainer, $i*3)
             }
 
             &.charging block:nth-child(#{$i}).filled {
-                background-color: color.mix($bg, $charging-bg, $i*3)
+                background-color: color.mix($background, $charging-bg, $i*3)
             }
 
             &:active .regular block:nth-child(#{$i}).filled {
-                background-color: color.mix($bg, $primary-fg, $i*3)
+                background-color: color.mix($background, $foreground, $i*3)
             }
         }
 
         &.low image {
-            color: $error-bg
+            color: $error
         }
 
         &.charging image {
@@ -253,7 +203,7 @@ $button-radius: $radius;
         }
 
         &:active image {
-            color: $primary-fg
+            color: $primary
         }
     }
 }

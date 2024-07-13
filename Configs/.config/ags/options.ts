@@ -12,35 +12,6 @@ const options = mkOptions(OPTIONS, {
     },
 
     theme: {
-        dark: {
-            primary: {
-                bg: opt("#51a4e7"),
-                fg: opt("#141414"),
-            },
-            error: {
-                bg: opt("#e55f86"),
-                fg: opt("#141414"),
-            },
-            bg: opt("#171717"),
-            fg: opt("#eeeeee"),
-            widget: opt("#eeeeee"),
-            border: opt("#eeeeee"),
-        },
-        light: {
-            primary: {
-                bg: opt("#426ede"),
-                fg: opt("#eeeeee"),
-            },
-            error: {
-                bg: opt("#b13558"),
-                fg: opt("#eeeeee"),
-            },
-            bg: opt("#fffffa"),
-            fg: opt("#080808"),
-            widget: opt("#080808"),
-            border: opt("#080808"),
-        },
-
         blur: opt(0),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
@@ -108,7 +79,6 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(),
         },
         taskbar: {
             iconSize: opt(14),
@@ -149,7 +119,7 @@ const options = mkOptions(OPTIONS, {
         },
         apps: {
             iconSize: opt(62),
-            max: opt(12),
+            max: opt(8),
             favorites: opt([
                 [
                     "firefox",

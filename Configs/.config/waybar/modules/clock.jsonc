@@ -1,7 +1,0 @@
-    "clock": {
-        "format": "{:%I:%M %p}",
-        "tooltip": "false",
-        "on-click": "ags -t datemenu"
-    },
-
-

@@ -111,7 +111,7 @@ export function Launcher() {
         filter(text: string | null) {
             first = query(text || "")[0]
             list.children.reduce((i, item) => {
-                if (!text || i >= max.value) {
+                if (!text) {
                     item.reveal_child = false
                     return i
                 }

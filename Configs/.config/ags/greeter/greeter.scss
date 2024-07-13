@@ -6,8 +6,8 @@
 @import "../widget/bar/bar.scss";
 
 window#greeter {
-    background-color: lighten($bg, 6%);
-    color: $fg;
+    background-color: lighten($background, 6%);
+    color: $foreground;
 
     .bar {
         background-color: transparent;
@@ -40,7 +40,7 @@ window#greeter {
             min-width: 140px;
             min-height: 140px;
             background-size: cover;
-            box-shadow: 3px 3px 6px 0 $shadow-color;
+            box-shadow: 3px 3px 6px 0 $shadow;
             margin-bottom: $spacing;
         }
 
@@ -57,7 +57,7 @@ window#greeter {
         }
 
         .response-box {
-            color: $error-bg;
+            color: $error;
             margin: $spacing 0;
         }
     }

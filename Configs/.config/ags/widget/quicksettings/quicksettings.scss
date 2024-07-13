@@ -11,7 +11,7 @@ window#quicksettings .quicksettings {
 
     .header {
         @include spacing(.5);
-        color: transparentize($fg, .15);
+        color: transparentize($foreground, .15);
 
         button {
             @include button;
@@ -47,7 +47,7 @@ window#quicksettings .quicksettings {
 
             &.muted highlight {
                 background-image: none;
-                background-color: transparentize($fg, $amount: .2);
+                background-color: transparentize($foreground, $amount: .2);
             }
         }
     }
@@ -73,7 +73,7 @@ window#quicksettings .quicksettings {
 
         separator {
             margin: ($radius * .5);
-            background-color: $border-color;
+            background-color: transparent;
         }
 
         button {
@@ -144,11 +144,11 @@ window#quicksettings .quicksettings {
         }
 
         &.active {
-            background-color: $primary-bg;
+            background-color: $primary;
 
             label,
             image {
-                color: $primary-fg;
+                color: $onPrimary;
             }
         }
     }

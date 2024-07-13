@@ -1,6 +1,6 @@
 window.settings-dialog {
-    background-color: $bg;
-    color: $fg;
+    background-color: $background;
+    color: $foreground;
 
     .header {
         .pager {
@@ -40,7 +40,7 @@ window.settings-dialog {
 
     .group {
         .group-title {
-            color: $primary-bg;
+            color: $primary;
             margin-bottom: $spacing*.5;
         }
 
@@ -60,14 +60,12 @@ window.settings-dialog {
     }
 
     .row {
-        background-color: $widget-bg;
+        background-color: $surfaceContainer;
         padding: $padding;
-        border: $border;
         border-top: none;
 
         &:first-child {
             border-radius: $radius $radius 0 0;
-            border: $border;
         }
 
         &:last-child {
@@ -76,7 +74,6 @@ window.settings-dialog {
 
         &:first-child:last-child {
             border-radius: $radius;
-            border: $border;
         }
 
         button.reset {
@@ -85,7 +82,7 @@ window.settings-dialog {
 
         label.id,
         label.note {
-            color: transparentize($fg, .4)
+            color: transparentize($foreground, .4)
         }
 
         entry,
@@ -116,8 +113,7 @@ window.settings-dialog {
 
         .enum-setter {
             label {
-                background-color: $widget-bg;
-                border: $border;
+                background-color: $surfaceContainer;
                 padding: 0 $padding;
                 border-radius: $radius 0 0 $radius;
             }
