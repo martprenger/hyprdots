@@ -3,6 +3,19 @@
 
 window#wallpaper .wallpaper {
     @include floating_widget;
+    @include spacing;
+    padding: $padding;
+    margin: $spacing;
+
+    selection {
+        color: color.mix($foreground, $background, 50%);
+        background-color: transparent;
+    }
+
+    label,
+    image {
+        color: $foreground;
+    }
 
     separator {
         // margin: 4pt 0;
