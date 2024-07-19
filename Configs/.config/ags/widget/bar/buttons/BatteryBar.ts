@@ -18,7 +18,8 @@ const PercentLabel = () => Widget.Revealer({
     click_through: true,
     reveal_child: percentage.bind(),
     child: Widget.Label({
-        label: battery.bind("percent").as(p => `${p}%`),
+      label: battery.bind("percent").as(p => `${Math.round(p)}%`),
+
     }),
 })
 
