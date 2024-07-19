@@ -1,0 +1,11 @@
+@use "sass:math";
+@use "sass:color";
+
+window#wallpaper .wallpaper {
+    @include floating_widget;
+
+    separator {
+        // margin: 4pt 0;
+        background-color: transparent;
+    }
+}

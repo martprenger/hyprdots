@@ -2,6 +2,7 @@ import { opt, mkOptions } from "lib/option"
 import { distro } from "lib/variables"
 import { icon } from "lib/utils"
 import icons from "lib/icons"
+import GLib from "gi://GLib?version=2.0"
 
 const options = mkOptions(OPTIONS, {
     autotheme: opt(false),
@@ -9,6 +10,9 @@ const options = mkOptions(OPTIONS, {
     wallpaper: {
         resolution: opt<import("service/wallpaper").Resolution>(1920),
         market: opt<import("service/wallpaper").Market>("random"),
+        width: opt(380),
+        position: opt<"left" | "center" | "right">("center"),
+        wallpaperDir: opt(`${GLib.get_home_dir()}/.config/hypr/wallpapers`),
     },
 
     theme: {
