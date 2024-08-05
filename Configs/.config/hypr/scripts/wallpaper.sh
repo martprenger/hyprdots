@@ -19,7 +19,7 @@ Wall_Set()
     --transition-duration 0.7 \
     --transition-fps 60 \
     --invert-y \
-    --transition-pos "$( hyprctl cursorpos )"    
+    --transition-pos "$( hyprctl cursorpos )"
 
 }
 

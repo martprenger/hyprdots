@@ -6,7 +6,6 @@ N|${HOME}/.config|code-flags.conf|code
 Y|${HOME}/.config|spotify-flags.conf|spotify
 Y|${HOME}/.config|spotify|spotify
 Y|${HOME}/.config|spicetify|spicetify-cli
-Y|${HOME}/.config|spotify-tui|spotify-tui
 Y|${HOME}/.config|synth-shell|alacritty
 Y|${HOME}/.config|ags|aylurs-gtk-shell
 Y|${HOME}/.config/|hypr|hyprland
