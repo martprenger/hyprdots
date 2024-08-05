@@ -21,7 +21,7 @@ cd ~/hyprdots/Scripts
 ./install.sh -c
 ```
 
-## Inspriations
+## Inspirations
 I took a lot of inspirations from difrent dotfiles. Here is a list of all the dotfiles I took inspiration from or just copied entire pieces of code from. If i forgot to put a repo in the list pleace contact me.
 
  - https://github.com/prasanthrangan/hyprdots
