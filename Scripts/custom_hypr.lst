@@ -16,6 +16,7 @@ blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 udiskie                                                # manage removable media
 deej                                                   # for physical volume mixer
+greetd                                                 # login manager
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma

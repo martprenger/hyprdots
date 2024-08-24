@@ -58,6 +58,7 @@ const QuickSettings = () =>
   PopupWindow({
     name: "quicksettings",
     transition: "slide_down",
+    exclusivity: "exclusive",
     layout: layout.value,
     child: Settings(),
   });

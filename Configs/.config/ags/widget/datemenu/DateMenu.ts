@@ -24,6 +24,7 @@ const Settings = () =>
 const DateMenu = () =>
   PopupWindow({
     name: "datemenu",
+    exclusivity: "exclusive",
     layout: layout.value,
     child: Settings(),
   });
