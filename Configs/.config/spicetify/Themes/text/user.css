@@ -9,7 +9,7 @@
 
 /* user settings */
 :root {
-    --font-family: "DM Mono", monospace;
+    --font-family: "Hack Nerd Font Regular", monospace;
     /*
     --font-family: 'Anonymous Pro', monospace;
     --font-family: 'Courier Prime', monospace;
@@ -407,7 +407,7 @@
    / ___/ __ \\/ __ \\/ __/ / /_/ / / /_____/ __/ / / / /\A
   (__  ) /_/ / /_/ / /_/ / __/ /_/ /_____/ /_/ /_/ / /\A
  /____/ .___/\\____/\\__/_/_/  \\__, /      \\__/\\__,_/_/\A
-     /_/                    /____/                      
+     /_/                    /____/
 
 */
 .view-homeShortcutsGrid-shortcuts::before {
