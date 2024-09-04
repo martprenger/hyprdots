@@ -167,6 +167,7 @@ def generate_templates(folder: str, output_folder: str, scheme: DynamicScheme, c
                 hex_color = rgb_to_hex(rgba)
                 rgb_color = rgba_to_rgb(rgba)
                 template = template.replace(f"<{color}>", hex_color)
+                template = template.replace(f"<{color}.#>", hex_color.replace("#", ""))
                 template = template.replace(f"<{color}.rgb>", rgb_color)
         template = (
             template
@@ -244,22 +245,22 @@ def process_image(image_path, quality=2, num_colors=128):
             pickle.dump(data, f)
 
     cache_path = get_cache_path(image_path)
-    
+
     cached_result = load_from_cache(cache_path)
     if cached_result is not None:
         return cached_result
-    
+
     image = Image.open(image_path).convert('RGB')
-    
+
     image_data = np.array(image)
     pixel_array = image_data[::quality, ::quality].reshape(-1, 3)
-    
+
     result = QuantizeCelebi(pixel_array, num_colors)
-    
+
     color = Score.score(result)[0]
-    
+
     save_to_cache(cache_path, color)
-    
+
     return color
 
 

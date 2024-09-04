@@ -4,7 +4,10 @@ import { Header } from "./widgets/Header";
 import { Volume, Microhone, SinkSelector, AppMixer } from "./widgets/Volume";
 import { Brightness } from "./widgets/Brightness";
 import { NetworkToggle, WifiSelection } from "./widgets/Network";
+<<<<<<< HEAD
 import { BluetoothToggle, BluetoothDevices } from "./widgets/Bluetooth";
+=======
+>>>>>>> main
 import { DND } from "./widgets/DND";
 import { DarkModeToggle } from "./widgets/DarkMode";
 import { MicMute } from "./widgets/MicMute";
@@ -45,6 +48,7 @@ const Settings = () =>
       Widget.Box({
         class_name: "sliders-box vertical",
         vertical: true,
+<<<<<<< HEAD
         children: [
           Row([Volume], [SinkSelector, AppMixer]),
           Microhone(),
@@ -53,6 +57,10 @@ const Settings = () =>
       }),
       Row([NetworkToggle, BluetoothToggle], [WifiSelection, BluetoothDevices]),
       Row([ProfileToggle, DarkModeToggle], [ProfileSelector]),
+=======
+        children: [Row([Volume], [SinkSelector, AppMixer]), Microhone()],
+      }),
+>>>>>>> main
       Row([MicMute, DND]),
       Widget.Box({
         visible: media.as((l) => l.length > 0),
@@ -64,10 +72,14 @@ const Settings = () =>
 const QuickSettings = () =>
   PopupWindow({
     name: "quicksettings",
+    transition: "slide_down",
     exclusivity: "exclusive",
+<<<<<<< HEAD
     transition: bar.position
       .bind()
       .as((pos) => (pos === "top" ? "slide_down" : "slide_up")),
+=======
+>>>>>>> main
     layout: layout.value,
     child: Settings(),
   });

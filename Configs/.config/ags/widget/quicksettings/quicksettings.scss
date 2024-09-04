@@ -1,177 +1,81 @@
-window#quicksettings .quicksettings {
-    @include floating-widget;
-    @include spacing;
+import type Gtk from "gi://Gtk?version=3.0";
+import { ProfileSelector, ProfileToggle } from "./widgets/PowerProfile";
+import { Header } from "./widgets/Header";
+import { Volume, Microhone, SinkSelector, AppMixer } from "./widgets/Volume";
+import { Brightness } from "./widgets/Brightness";
+import { NetworkToggle, WifiSelection } from "./widgets/Network";
+import { BluetoothToggle, BluetoothDevices } from "./widgets/Bluetooth";
+import { DND } from "./widgets/DND";
+import { DarkModeToggle } from "./widgets/DarkMode";
+import { MicMute } from "./widgets/MicMute";
+import { Media } from "./widgets/Media";
+import PopupWindow from "widget/PopupWindow";
+import options from "options";
 
-    padding: $popover-padding * 1.4;
+const { bar, quicksettings } = options;
+const media = (await Service.import("mpris")).bind("players");
+const layout = Utils.derive(
+  [bar.position, quicksettings.position],
+  (bar, qs) => `${bar}-${qs}` as const,
+);
 
-    .avatar {
-        @include widget;
-        border-radius: $radius * 3;
-    }
+const Row = (
+  toggles: Array<() => Gtk.Widget> = [],
+  menus: Array<() => Gtk.Widget> = [],
+) =>
+  Widget.Box({
+    vertical: true,
+    children: [
+      Widget.Box({
+        homogeneous: true,
+        class_name: "row horizontal",
+        children: toggles.map((w) => w()),
+      }),
+      ...menus.map((w) => w()),
+    ],
+  });
 
-    .header {
-        @include spacing(.5);
-        color: transparentize($foreground, .15);
+const Settings = () =>
+  Widget.Box({
+    vertical: true,
+    class_name: "quicksettings vertical",
+    css: quicksettings.width.bind().as((w) => `min-width: ${w}px;`),
+    children: [
+      Header(),
+      Widget.Box({
+        class_name: "sliders-box vertical",
+        vertical: true,
+        children: [
+          Row([Volume], [SinkSelector, AppMixer]),
+          Microhone(),
+          Brightness(),
+        ],
+      }),
+      Row([NetworkToggle, BluetoothToggle], [WifiSelection, BluetoothDevices]),
+      Row([ProfileToggle, DarkModeToggle], [ProfileSelector]),
+      Row([MicMute, DND]),
+      Widget.Box({
+        visible: media.as((l) => l.length > 0),
+        child: Media(),
+      }),
+    ],
+  });
 
-        button {
-            @include button;
-            padding: $padding;
+const QuickSettings = () =>
+  PopupWindow({
+    name: "quicksettings",
+    exclusivity: "exclusive",
+    transition: bar.position
+      .bind()
+      .as((pos) => (pos === "top" ? "slide_down" : "slide_up")),
+    layout: layout.value,
+    child: Settings(),
+  });
 
-            image {
-                font-size: 1.4em;
-            }
-        }
-    }
-
-    .sliders-box {
-        @include widget;
-        padding: $padding;
-
-        button {
-            @include button($flat: true);
-            padding: $padding * .5;
-        }
-
-        .volume button.arrow:last-child {
-            margin-left: $spacing * .4;
-        }
-
-        .volume,
-        .brightness {
-            padding: $padding * .5;
-        }
-
-        scale {
-            @include slider;
-            margin: 0 ($spacing * .5);
-
-            &.muted highlight {
-                background-image: none;
-                background-color: transparentize($foreground, $amount: .2);
-            }
-        }
-    }
-
-    .row {
-        @include spacing;
-    }
-
-    .menu {
-        @include unset;
-        @include widget;
-        padding: $padding;
-        margin-top: $spacing;
-
-        .icon {
-            margin: 0 ($spacing * .5);
-            margin-left: $spacing * .2;
-        }
-
-        .title {
-            font-weight: bold;
-        }
-
-        separator {
-            margin: ($radius * .5);
-            background-color: transparent;
-        }
-
-        button {
-            @include button($flat: true);
-            padding: ($padding * .5);
-
-            image:first-child {
-                margin-right: $spacing * .5;
-            }
-        }
-
-        .bluetooth-devices {
-            @include spacing(.5);
-        }
-
-        switch {
-            @include switch;
-        }
-    }
-
-    .sliders-box .menu {
-        margin: ($spacing * .5) 0;
-
-        &.app-mixer {
-            .mixer-item {
-                padding: $padding * .5;
-                padding-left: 0;
-                padding-right: $padding * 2;
-
-                scale {
-                    @include slider($width: .5em);
-                }
-
-                image {
-                    font-size: 1.2em;
-                    margin: 0 $padding;
-                }
-            }
-        }
-    }
-
-    .toggle-button {
-        @include button;
-        font-weight: bold;
-
-        image {
-            font-size: 1.3em;
-        }
-
-        label {
-            margin-left: $spacing * .3;
-        }
-
-        button {
-            @include button($flat: true);
-
-            &:first-child {
-                padding: $padding * 1.2;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-
-            &:last-child {
-                padding: $padding * .5;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-        }
-
-        &.active {
-            background-color: $primary;
-
-            label,
-            image {
-                color: $onPrimary;
-            }
-        }
-    }
-
-    .simple-toggle {
-        @include button;
-        font-weight: bold;
-        padding: $padding * 1.2;
-
-        label {
-            margin-left: $spacing * .3;
-        }
-
-        image {
-            font-size: 1.3em;
-        }
-    }
-
-    .media {
-        @include spacing;
-
-        .player {
-            @include media;
-        }
-    }
+export function setupQuickSettings() {
+  App.addWindow(QuickSettings());
+  layout.connect("changed", () => {
+    App.removeWindow("quicksettings");
+    App.addWindow(QuickSettings());
+  });
 }

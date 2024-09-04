@@ -1,4 +1,103 @@
+/**
+ * @name Material Discord
+ * @version 3.0.5
+ * @description A theme based on Google's Material Design
+ * @author CapnKitten
+ *
+ * @website http://github.com/CapnKitten
+ * @source https://github.com/CapnKitten/BetterDiscord/blob/master/Themes/Material-Discord/css/source.css
+ * @donate https://paypal.me/capnkitten
+ * @invite jzJkA6Z
+ */
+
 @import url(https://capnkitten.github.io/BetterDiscord/Themes/Material-Discord/css/source.css);
+
+/* Material You addon */
+@import url(https://capnkitten.github.io/BetterDiscord/Themes/Material-Discord/css/addons/material-you/source.css);
+
+/* MATERIAL YOU DARK THEME SETTINGS */
+.theme-dark {
+    --saturation-modifier: 0.31;
+    --lightness-modifier: 0.225;
+    --text-lightness-modifier: 1;
+}
+
+/* MATERIAL YOU LIGHT THEME SETTINGS */
+.theme-light {
+    --saturation-modifier: 0.74;
+    --lightness-modifier: 2.125;
+    --text-lightness-modifier: 1;
+}
+
+:root {
+    /* ACCENT HSL AND TEXT COLOR SETTINGS */
+    --accent-hue: 227;
+    --accent-saturation: 71%;
+    --accent-lightness: 61%;
+    --accent-text-color: hsl(
+        0,
+        0%,
+        100%
+    ); /* DOES NOTHING WITH MATERIAL YOU ENABLED */
+    --accent-button-action: hsl(0, 0%, 100%);
+
+    /* ALERT HSL AND TEXT COLOR SETTINGS */
+    --alert-hue: 0;
+    --alert-saturation: 85%;
+    --alert-lightness: 61%;
+    --alert-text-color: hsl(
+        0,
+        0%,
+        100%
+    ); /* DOES NOTHING WITH MATERIAL YOU ENABLED */
+
+    /* WARNING HSL AND TEXT COLOR SETTINGS*/
+    --warning-hue: 40;
+    --warning-saturation: 86.4%;
+    --warning-lightness: 56.9%;
+    --warning-text-color: hsl(
+        0,
+        0%,
+        100%
+    ); /* DOES NOTHING WITH MATERIAL YOU ENABLED */
+
+    /* MESSAGE SETTINGS */
+    --message-radius: 18px;
+    --message-padding-top: 8px;
+    --message-padding-side: 12px;
+
+    /* MESSAGE MEDIA SETTINGS */
+    --media-radius: 10px;
+
+    /* CARD SETTINGS */
+    --card-radius: 8px;
+    --card-radius-big: 18px;
+
+    /* BUTTON SETTINGS */
+    --button-height: 36px;
+    --button-padding: 0 24px;
+    --button-action-color: hsl(0, 0%, 100%);
+
+    /* INPUT SETTINGS */
+    --input-height: 36px;
+    --input-padding: 0 12px;
+
+    /* POPOUT AND MODAL SETTINGS */
+    --popout-radius: 8px;
+    --popout-radius-big: 18px;
+
+    /* TOOLTIP SETTINGS */
+    --tooltip-color: hsl(0, 0%, 38%, 0.9);
+    --tooltip-text-color: hsl(0, 0%, 87%);
+    --tooltip-font-size: 12px;
+    --tooltip-padding: 8px;
+    --tooltip-radius: 8px;
+
+    /* SCROLLBAR SETTINGS */
+    --scrollbar-width: 10px;
+    --scrollbar-thin-width: 6px;
+}
+
 @import "<output-folder>/colors.scss";
 
 $color-scheme: <color-scheme>;
@@ -13,41 +112,40 @@ $lightness: round(lightness($primary));
 }
 
 .theme-#{$color-scheme} {
-	--main-color: #{$background};
-	--main-alt: #{$surfaceContainerLow};
+    --main-color: #{$background};
+    --main-alt: #{$surfaceContainerLow};
 
-	--message-color: #{$surfaceContainerLowest};
-	--message-color-hover: #{$surfaceContainer};
-	--message-color-alt: #{$surfaceContainer};
-	--attachment-color: #{$background};
+    --message-color: #{$surfaceContainerLowest};
+    --message-color-hover: #{$surfaceContainer};
+    --message-color-alt: #{$surfaceContainer};
+    --attachment-color: #{$background};
 
-	--accent-hue: #{$hue};
-	--accent-saturation: #{$saturation};
-	--accent-lightness: #{$lightness};
-	--accent-text-color: #{$onPrimary};
+    --accent-hue: #{$hue};
+    --accent-saturation: #{$saturation};
+    --accent-lightness: #{$lightness};
+    --accent-text-color: #{$onPrimary};
 
-	--main-textarea-color: #{$surfaceContainerHigh};
-	--main-textarea-color-alt: #{$surfaceContainerHighest};
-	--status-picker-color: #{$surfaceContainerHigh};
+    --main-textarea-color: #{$surfaceContainerHigh};
+    --main-textarea-color-alt: #{$surfaceContainerHighest};
+    --status-picker-color: #{$surfaceContainerHigh};
 
-	--tooltip-color: #{$surfaceContainer};
-	--popout-color: #{$surfaceContainer};
-	--popout-color-alt: #{$surfaceContainerLowest};
-	--popout-header-border: #{$onSurface};
-	--separator-color: #{$outlineVariant};
-	--sidebar-panel-color: #{$surfaceContainerLowest};
-	--server-color: #{$surfaceContainerLow};
+    --tooltip-color: #{$surfaceContainer};
+    --popout-color: #{$surfaceContainer};
+    --popout-color-alt: #{$surfaceContainerLowest};
+    --popout-header-border: #{$onSurface};
+    --separator-color: #{$outlineVariant};
+    --sidebar-panel-color: #{$surfaceContainerLowest};
+    --server-color: #{$surfaceContainerLow};
 }
 
 [class*="botTag_"] svg path {
-	fill: #{$onPrimary};
+    fill: #{$onPrimary};
 }
 
 [class*="repliedTextContent_"] {
-	padding: 0px 5px 0px 5px !important;
+    padding: 0px 5px 0px 5px !important;
 }
 
 [class*="userPopoutOuter_"] {
-	border-radius: 16px !important;
+    border-radius: 16px !important;
 }
-  
